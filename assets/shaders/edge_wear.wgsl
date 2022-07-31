@@ -9,35 +9,33 @@
 #import bevy_pbr::pbr_functions
 
 struct Material {
-    wear: f32;
-    corner_wear: f32;
-};
+    wear: f32,
+    corner_wear: f32,
+}
 
-[[group(1), binding(0)]]
+@group(1) @binding(0)
 var<uniform> material: Material;
-[[group(1), binding(1)]]
+@group(1) @binding(1)
 var base_color_texture: texture_2d<f32>;
-[[group(1), binding(2)]]
+@group(1) @binding(2)
 var base_color_sampler: sampler;
-[[group(1), binding(3)]]
+@group(1) @binding(3)
 var roughness_texture: texture_2d<f32>;
-[[group(1), binding(4)]]
+@group(1) @binding(4)
 var roughness_sampler: sampler;
-[[group(1), binding(5)]]
+@group(1) @binding(5)
 var noise_texture: texture_2d<f32>;
-[[group(1), binding(6)]]
+@group(1) @binding(6)
 var noise_sampler: sampler;
 
 struct FragmentInput {
-    [[builtin(front_facing)]] is_front: bool;
-    [[builtin(position)]] frag_coord: vec4<f32>;
-    [[location(0)]] world_position: vec4<f32>;
-    [[location(1)]] world_normal: vec3<f32>;
-    [[location(2)]] uv: vec2<f32>;
+    @builtin(front_facing) is_front: bool,
+    @builtin(position) frag_coord: vec4<f32>,
+    #import bevy_pbr::mesh_vertex_output
 };
 
-[[stage(fragment)]]
-fn fragment(in: FragmentInput) -> [[location(0)]] vec4<f32> {
+@fragment
+fn fragment(in: FragmentInput) -> @location(0) vec4<f32> {
 
     // Sample textures
     var color = textureSample(base_color_texture, base_color_sampler, in.uv).rgb;
