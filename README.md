@@ -1,7 +1,7 @@
 # Bevy Edge Wear Material
 Example Project showing how to implement a custom material with edge wear.
 
-Depends on bevy main branch.
+Depends on bevy 0.8
 
 ![demo](demo.jpg)
 
